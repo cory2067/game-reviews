@@ -1,10 +1,12 @@
 import json
 import random
 from textblob import TextBlob
-from server import MMLL
+from generator import Generator
 from flask import Flask
 from flask import render_template
+
 app = Flask(__name__)
+gen = Generator()
 
 @app.route("/")
 def index(loaded=False):
@@ -14,6 +16,4 @@ def index(loaded=False):
 def result(result=None):
     return render_template('result.html', result=None)
 
-madlibML = MMLL()
-madlibML.load_database()
 app.run('127.0.0.1', '5000')
