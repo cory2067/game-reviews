@@ -21,6 +21,10 @@
     width: 600px;
 }
 
+#pos {
+    margin-top: 0;
+}
+
 .demo-ribbon {
   width: 100%;
   height: 40vh;
