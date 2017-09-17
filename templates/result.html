@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	</head>
+
+	<body>
+	{% if result %}
+  	<p id="result">{{ result }}</p>
+	{% else %}
+  	<p id="result">Error: there was no madlib as input</p>
+	{% endif %}
+	</body>
+
+</html>
