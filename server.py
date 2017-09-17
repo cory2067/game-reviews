@@ -3,49 +3,56 @@ import random
 from textblob import TextBlob
 
 # the db has ~20038 entries
-db = []
+class MMLL():
 
-print("Loading db...")
-with open('db.json') as f:
-    for line in f:
-       db.append(json.loads(line))
+    def __init__(self):
+        self.db = []
+        self.libs = []
+        self.payload = {'review': 0}
 
-print("Done.")
+    def add(self, i, w, pos):
+        self.libs.append({
+            'id': i,
+            'word': w,
+            'pos': pos,
+        })
 
-review_id = 16578
-# review_id = random.randint(0, 20037)
-text = db[review_id]['reviewText']
-words = TextBlob(text).tags
+    def load_database(self):
+        print("Loading db...")
+        with open('db.json') as f:
+            for line in f:
+                self.db.append(json.loads(line))
 
-payload = {'review': review_id}
-libs = []
+        print("Done.")
 
-def add(i, w, pos):
-    libs.append({
-        'id': i,
-        'word': w,
-        'pos': pos,
-    })
+    def load_MMLL(self):
+        if self.libs: # if there were previous libs
+            self.libs = []
 
-for i,(w,pos) in enumerate(words):
-    if random.random() > 0.4:
-        continue
+        review_id = random.randint(0, 20037)
+        text = self.db[review_id]['reviewText']
+        words = TextBlob(text).tags
 
-    if pos == 'NN':
-        add(i,w,'Noun')
-    elif pos == 'NNS':
-        add(i,w,'Plural Noun')
-    elif pos == 'JJ':
-        add(i,w,'Adjective')
-    elif pos == 'JJR':
-        add(i,w,'-er Adjective')
-    elif pos == 'JJS':
-        add(i,w,'-est Adjective')
-    elif pos == 'VBD':
-        add(i,w,'Past Tense Verb')
-    elif pos == 'VGB':
-        add(i,w,'Gerund (Verb-ing)')
+        for i, (w, pos) in enumerate(words):
+            if random.random() > 0.4:
+                continue
 
-payload['words'] = libs
+            if pos == 'NN':
+                self.add(i, w, 'Noun')
+            elif pos == 'NNS':
+                self.add(i, w, 'Plural Noun')
+            elif pos == 'JJ':
+                self.add(i, w, 'Adjective')
+            elif pos == 'JJR':
+                self.add(i, w, '-er Adjective')
+            elif pos == 'JJS':
+                self.add(i, w, '-est Adjective')
+            elif pos == 'VBD':
+                self.add(i, w, 'Past Tense Verb')
+            elif pos == 'VGB':
+                self.add(i, w, 'Gerund (Verb-ing)')
 
-print(payload)
+        self.payload['words'] = self.libs
+
+        print(self.payload)
+
