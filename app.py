@@ -18,8 +18,9 @@ def result(result=None):
 
 @app.route("/game", methods=['GET', 'POST'])
 def show_entry():
-    return render_template('game.html', result=None)
+    print(json.dumps(gen.generate()))
+    return render_template('game.html', data=json.dumps(gen.generate()))
 
-    
+
 
 app.run('127.0.0.1', '5000')
