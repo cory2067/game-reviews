@@ -13,6 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#word {
+    font-size: 60px;
+}
+
+#word-wrapper {
+    width: 600px;
+}
 
 .demo-ribbon {
   width: 100%;
