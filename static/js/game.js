@@ -9,7 +9,11 @@ $(function() {
             $("#word").val('');
             index += 1;
             if (index >= data['words'].length) {
-                alert("done")
+                $.post('/result', {data: JSON.stringify(data)}, function(result) {
+                    result = result.replace( /\&lt;/g, '<').replace(/\&gt;/g, '>');
+                    $("#wrapper").html(result);
+                });
+                return;
             }
             $("#pos").html(data['words'][index]['pos']);
             e.preventDefault();

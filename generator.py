@@ -26,7 +26,7 @@ class Generator():
             })
 
         for i, (w, pos) in enumerate(words):
-            if random.random() > 0.4:
+            if random.random() > 0.35:
                 continue
 
             if pos == 'NN':
@@ -53,8 +53,6 @@ class Generator():
 
         # replace all the relevant words in the text with their new word
         for el in payload['words']:
-            text.replace(el['word'], el['newword'], 1) # limit to 1 replacement
+            text = text.replace(el['word'], '<b>{}</b>'.format(el['newword']), 1) # limit to 1 replacement
 
         return text
-
-
