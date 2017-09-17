@@ -15,6 +15,7 @@ $(function() {
                 });
                 return;
             }
+            $("#prog").attr("value", 100*index/data['words'].length);
             $("#pos").html(data['words'][index]['pos']);
             e.preventDefault();
         }
