@@ -46,3 +46,15 @@ class Generator():
 
         payload['words'] = libs
         return payload
+
+    def make_result(self, payload):
+        review_id = payload['review']
+        text = self.db[review_id]['reviewText']
+
+        # replace all the relevant words in the text with their new word
+        for el in payload['words']:
+            text.replace(el['word'], el['newword'], 1) # limit to 1 replacement
+
+        return text
+
+
