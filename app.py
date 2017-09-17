@@ -16,4 +16,10 @@ def index(loaded=False):
 def result(result=None):
     return render_template('result.html', result=None)
 
+@app.route("/game", methods=['GET', 'POST'])
+def show_entry():
+    return render_template('game.html', result=None)
+
+    
+
 app.run('127.0.0.1', '5000')

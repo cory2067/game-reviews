@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    </head>
+    
+    {% block body %}
+        <form action="/game" method=post>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="sample1"><br>
+                <label class="mdl-textfield__label" for="sample1">Part of speech</label>
+            </div>
+        </form>
+    {% endblock %}
+    </body>
+</html>
